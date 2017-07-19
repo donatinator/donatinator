@@ -1,0 +1,21 @@
+{
+  "name": "donatinator",
+  "version": "0.1.0",
+  "description": "Small, simple, secure way to accept one-off or recurring donations for your non-profit or charity.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bole": "^3.0.2",
+    "canonical-host": "0.0.5",
+    "compression": "^1.7.0",
+    "cookie-session": "^2.0.0-beta.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "pug": "^2.0.0-rc.2",
+    "pushid": "^1.0.0",
+    "serve-favicon": "^2.4.3"
+  }
+}
