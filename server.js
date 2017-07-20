@@ -21,6 +21,11 @@ bole.output({
 
 const log = bole('server')
 
+// check some env vars are set
+if ( !process.env.STRIPE_PUBLIC_KEY ) {
+  throw new Error("Required: environment variable STRIPE_PUBLIC_KEY (your publishable key) must be set")
+}
+
 // --------------------------------------------------------------------------------------------------------------------
 // server
 

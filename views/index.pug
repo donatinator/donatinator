@@ -14,6 +14,18 @@ block content
         input(type="radio",name="single")
         em $10.00
         |  Ensures we can provide the right support throughout the year.
+        form(action="/thanks", method="POST")
+          script(
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key=stripePublicKey
+            data-amount="1000"
+            data-name="Fresh Water for All"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-zip-code="true"
+            data-currency="nzd"
+          )
       p
         input(type="radio",name="single")
         em $25.00
