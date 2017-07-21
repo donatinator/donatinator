@@ -1,0 +1,10 @@
+extends layout
+
+block menu
+  ul.nav.nav-pills.float-right
+    li.nav-item
+      a.nav-link(class=(toptab==="index"?"active":""), href="/") Home
+    li.nav-item
+      a.nav-link(class=(toptab==="admin"?"active":""), href="/admin/") Admin
+    li.nav-item
+      a.nav-link(class=(toptab==="sign-out"?"active":""), href="/sign-out") Sign Out

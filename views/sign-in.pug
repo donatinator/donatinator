@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  h1 Admin
+  p Please sign in.
+  if msg
+    .alert.alert-danger
+      strong Error
+      |  #{msg}
+  form(method="POST", action="/sign-in")
+    input(type="text", name="username", value=username, placeholder="username")
+    br
+    input(type="password", name="password", placeholder="password")
+    br
+    input(type="submit", value="Sign In")

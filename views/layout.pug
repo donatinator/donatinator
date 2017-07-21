@@ -13,13 +13,14 @@ html(lang="en")
     .container
       .header.clearfix
         nav
-          ul.nav.nav-pills.float-right
-            li.nav-item
-              a.nav-link(class=(toptab==="index"?"active":""), href="/") Home
-            li.nav-item
-              a.nav-link(class=(toptab==="about"?"active":""), href="/about") About
-            li.nav-item
-              a.nav-link(class=(toptab==="contact"?"active":""), href="/contact") Contact
+          block menu
+            ul.nav.nav-pills.float-right
+              li.nav-item
+                a.nav-link(class=(toptab==="index"?"active":""), href="/") Home
+              li.nav-item
+                a.nav-link(class=(toptab==="about"?"active":""), href="/about") About
+              li.nav-item
+                a.nav-link(class=(toptab==="contact"?"active":""), href="/contact") Contact
         h3.text-muted= title
 
       block content
