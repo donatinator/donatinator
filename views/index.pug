@@ -14,53 +14,16 @@ block content
         strong $10.00
         br
         |  Ensures we can provide the right support throughout the year.
-        form(action="/thanks", method="POST")
-          script(
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=stripePublicKey
-            data-amount="1000"
-            data-name="Fresh Water for All"
-            data-description="$10 per Month"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="nzd"
-            data-label="Donate $10.00 / Month"
-          )
+
       div(style="padding-bottom: 30px;")
         strong $25.00
         br
         |  Enables us to invest in new projects.
-        form(action="/thanks", method="POST")
-          script(
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=stripePublicKey
-            data-amount="2500"
-            data-name="Fresh Water for All"
-            data-description="$25 per Month"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="nzd"
-            data-label="Donate $25.00 / Month"
-          )
+
       div(style="padding-bottom: 30px;")
         strong $100.00
         br
         |  Makes sure we can continue our work on an ongoing basis.
-        form(action="/thanks", method="POST")
-          script(
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=stripePublicKey
-            data-amount="10000"
-            data-name="Fresh Water for All"
-            data-description="$100 per Month"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="nzd"
-            data-label="Donate $100.00 / Month"
-          )
 
     .col-lg-6
       h2 Single Donation
@@ -68,56 +31,50 @@ block content
         strong $10.00
         br
         |  Provides one person water for a year.
-        form(action="/thanks", method="POST")
-          input(type="hidden", name="amount", value="1000")
-          input(type="hidden", name="type", value="donation")
-          script(
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=stripePublicKey
-            data-amount="1000"
-            data-name="Fresh Water for All"
-            data-description="$10 Donation"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="nzd"
-            data-label="Donate $10.00 Now"
-          )
+        button.btn.btn-primary.js-single(
+          type="button"
+          disabled="true"
+          data-name="Fresh Water for All"
+          data-description="$10 Donation"
+          data-amount="1000"
+          data-panel-label="Donate {{amount}} Now"
+          data-currency="nzd"
+        ) Donate $10.00 Now
+
       div(style="padding-bottom: 30px;")
         strong $25.00
         br
         |  Buys tools and equipment to help maintain current infrastructure.
-        form(action="/thanks", method="POST")
-          input(type="hidden", name="amount", value="2500")
-          input(type="hidden", name="type", value="donation")
-          script(
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=stripePublicKey
-            data-amount="2500"
-            data-name="Fresh Water for All"
-            data-description="$25 Donation"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="nzd"
-            data-label="Donate $25.00 Now"
-          )
+        button.btn.btn-primary.js-single(
+          type="button"
+          disabled="true"
+          data-name="Fresh Water for All"
+          data-description="$10 Donation"
+          data-amount="2500"
+          data-panel-label="Donate {{amount}} Now"
+          data-currency="nzd"
+        ) Donate $25.00 Now
+
       div(style="padding-bottom: 30px;")
         strong $100.00
         br
         |  Provides one day's labour to help build new water supplies and sewerage.
-        form(action="/thanks", method="POST")
-          input(type="hidden", name="amount", value="10000")
-          input(type="hidden", name="type", value="donation")
-          script(
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=stripePublicKey
-            data-amount="10000"
-            data-name="Fresh Water for All"
-            data-description="$100 Donation"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="nzd"
-            data-label="Donate $100.00 Now"
-          )
+        button.btn.btn-primary.js-single(
+          type="button"
+          disabled="true"
+          data-name="Fresh Water for All"
+          data-description="$10 Donation"
+          data-amount="10000"
+          data-panel-label="Donate {{amount}} Now"
+          data-currency="nzd"
+        ) Donate $100.00 Now
+
+      form#js-form-single(action="/donate", method="post")
+        input(type="hidden", name="email")
+        input(type="hidden", name="token")
+        input(type="hidden", name="tokenType")
+        input(type="hidden", name="amount")
+
+block scripts
+  script(src="https://checkout.stripe.com/checkout.js")
+  script(src="/s/js/index.js")
