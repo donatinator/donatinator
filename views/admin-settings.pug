@@ -1,0 +1,19 @@
+extends layout-admin
+
+block content
+
+  h1 Settings
+
+  p These are settings specific to your organisation and donation website.
+
+  form(action="/admin/settings", method="post")
+    for setting, name in settings.simple
+      .form-group.row
+        label.col-3.col-form-label(for="input-#{name}") #{setting.title} #{setting.required ? ' (*)' : ''}
+        .col-9
+          input.form-control(id=('input-' + name), type="text", value=(values[name] || setting.default))
+          p.form-text.text-muted(id=('help-' + name)) !{setting.help}
+    .form-group.row
+      .offset-sm-3.col-sm-10
+        button.btn.btn-primary(type="submit") Save
+        a.btn.btn-default(href="/admin/") Cancel

@@ -18,6 +18,7 @@
     "pug": "^2.0.0-rc.2",
     "pushid": "^1.0.0",
     "serve-favicon": "^2.4.3",
-    "stripe": "^4.23.1"
+    "stripe": "^4.23.1",
+    "validate.js": "^0.11.1"
   }
 }
