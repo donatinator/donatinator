@@ -16,7 +16,7 @@
     "express": "^4.15.3",
     "morgan": "^1.8.2",
     "pg": "^7.0.2",
-    "pg-patcher": "^0.3.0",
+    "pg-patcher": "^0.4.0",
     "pug": "^2.0.0-rc.2",
     "pushid": "^1.0.0",
     "serve-favicon": "^2.4.3",

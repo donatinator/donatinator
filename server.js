@@ -59,7 +59,6 @@ client.connect()
 console.log('Checking/patching database to level %d ...', databasePatchLevel)
 const opts = {
   dir : path.join(__dirname, 'schema'),
-  // prefix : ,
 }
 pgpatcher(client, databasePatchLevel, opts, (err) => {
   if ( err ) {
