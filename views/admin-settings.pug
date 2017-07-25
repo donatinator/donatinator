@@ -7,11 +7,19 @@ block content
   p These are settings specific to your organisation and donation website.
 
   form(action="/admin/settings", method="post")
-    for item, name in cfg.simple
+    for item, name in cfg
       .form-group.row
         label.col-3.col-form-label(for="input-#{name}") #{item.title} #{item.required ? ' (*)' : ''}
-        .col-9
-          input.form-control(id=('input-' + name), type="text", value=(form[name] || ( current[name] && current[name].value)))
+        .col-9(class=(errors[name] ? 'has-danger' : ''))
+          input.form-control(
+            id=('input-' + name)
+            name=name
+            type="text"
+            value=(form[name] || ( current[name] && current[name].value ) || '' )
+            placeholder=(item.default || item.title || '')
+          )
+          if errors[name]
+            .form-control-feedback= errors[name]
           p.form-text.text-muted(id=('help-' + name)) !{item.help}
     .form-group.row
       .offset-sm-3.col-sm-10

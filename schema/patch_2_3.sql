@@ -5,7 +5,7 @@ BEGIN;
 -- table: setting
 CREATE TABLE setting (
     id              INTEGER NOT NULL DEFAULT nextval('object_id_seq'::TEXT) PRIMARY KEY,
-    key             TEXT UNIQUE,
+    key             TEXT UNIQUE NOT NULL,
     value           TEXT NOT NULL DEFAULT '',
 
     LIKE base       INCLUDING DEFAULTS
