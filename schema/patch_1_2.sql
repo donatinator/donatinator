@@ -1,5 +1,3 @@
-BEGIN;
-
 -- ----------------------------------------------------------------------------
 
 -- infrastructure
@@ -52,7 +50,3 @@ CREATE AGGREGATE list (
 CREATE SEQUENCE object_id_seq;
 
 -- ----------------------------------------------------------------------------
-
-UPDATE property SET value = 2 WHERE key = 'patch';
-
-COMMIT;

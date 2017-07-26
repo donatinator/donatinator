@@ -1,5 +1,3 @@
-BEGIN;
-
 -- ----------------------------------------------------------------------------
 
 -- sequence: object
@@ -16,7 +14,3 @@ DROP FUNCTION updated();
 DROP TABLE base;
 
 -- ----------------------------------------------------------------------------
-
-UPDATE property SET value = 1 WHERE key = 'patch';
-
-COMMIT;

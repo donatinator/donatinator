@@ -1,5 +1,3 @@
-BEGIN;
-
 -- ----------------------------------------------------------------------------
 
 -- table: setting
@@ -14,7 +12,3 @@ CREATE TRIGGER setting_updated BEFORE UPDATE ON setting
     FOR EACH ROW EXECUTE PROCEDURE updated();
 
 -- ----------------------------------------------------------------------------
-
-UPDATE property SET value = 3 WHERE key = 'patch';
-
-COMMIT;
