@@ -3,9 +3,8 @@ extends layout
 block content
 
   .jumbotron
-    h1.display-3= title
-    p.lead
-      | Your donation is very important to the thousands of families we help attain clean water every year. Every donation goes directly to helping each village and all provide real outcomes.
+    h1.display-3= settings.title || title
+    p.lead= settings.lead || '*** Site lead/description goes here, see /admin/settings to change it. ***'
 
   .row.marketing
     .col-lg-6
