@@ -21,7 +21,7 @@ html(lang="en")
                 a.nav-link(class=(toptab==="about"?"active":""), href="/about") About
               li.nav-item
                 a.nav-link(class=(toptab==="contact"?"active":""), href="/contact") Contact
-        h3.text-muted= title
+        h3.text-muted= settings.title || title
 
       block content
 

@@ -39,6 +39,8 @@ if ( !process.env.DATABASE_URL ) {
   throw new Error("Required: environment variable DATABASE_URL must be provided")
 }
 
+console.log('Env Vars look okay')
+
 // --------------------------------------------------------------------------------------------------------------------
 // main
 
