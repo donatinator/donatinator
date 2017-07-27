@@ -8,9 +8,22 @@ block content
     .alert.alert-danger
       strong Error
       |  #{msg}
+  // Do a proper form here.
   form(method="POST", action="/sign-in")
-    input(type="text", name="username", value=username, placeholder="username")
-    br
-    input(type="password", name="password", placeholder="password")
-    br
-    input(type="submit", value="Sign In")
+    .form-group.row
+      label.col-3.col-form-label(for="input-username") Username
+      .col-sm-9(class=(errors.username ? 'has-danger' : ''))
+        input(type="text", name="username", value=form.username, placeholder="Username")
+        if errors.username
+          .form-control-feedback= errors.username
+        p.form-text.text-muted(id="help-username") Either a username you've added or your &apos;admin&apos; username.
+    .form-group.row
+      label.col-3.col-form-label(for="input-password") Password
+      .col-sm-9(class=(errors.password ? 'has-danger' : ''))
+        input(type="password", name="password", placeholder="Password")
+        if errors.password
+          .form-control-feedback= errors.password
+    .form-group.row
+      .offset-sm-3.col-sm-9
+        input.btn.btn-primary(type="submit", value="Sign In")
+        a.btn.btn-default(href="/") Cancel
