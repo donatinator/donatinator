@@ -7,7 +7,6 @@ const http = require('http')
 const path = require('path')
 
 // npm
-const bole      = require('bole')
 const pg        = require('pg')
 const pgpatcher = require('pg-patcher')
 
@@ -18,14 +17,6 @@ const app = require('./lib/app.js')
 // setup
 
 console.log('Starting Donatinator ...')
-
-// logging
-bole.output({
-  level  : 'info',
-  stream : process.stderr,
-})
-
-const log = bole('server')
 
 // database
 const databasePatchLevel = 3
@@ -60,7 +51,8 @@ client.connect()
 
 console.log('Checking/patching database to level %d ...', databasePatchLevel)
 const opts = {
-  dir : path.join(__dirname, 'schema'),
+  dir    : path.join(__dirname, 'schema'),
+  logger : console.log.bind(console),
 }
 pgpatcher(client, databasePatchLevel, opts, (err) => {
   if ( err ) {

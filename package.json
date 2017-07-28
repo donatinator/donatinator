@@ -10,7 +10,6 @@
     "async": "^2.5.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
-    "bole": "^3.0.2",
     "canonical-host": "0.0.5",
     "compression": "^1.7.0",
     "cookie-session": "^2.0.0-beta.2",
@@ -19,9 +18,9 @@
     "pg": "^7.0.2",
     "pg-patcher": "^0.4.0",
     "pug": "^2.0.0-rc.2",
-    "pushid": "^1.0.0",
     "serve-favicon": "^2.4.3",
     "stripe": "^4.23.1",
-    "validate.js": "^0.11.1"
+    "validate.js": "^0.11.1",
+    "zid": "^0.2.0"
   }
 }
