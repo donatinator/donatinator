@@ -45,11 +45,12 @@ $(function() {
 
     // Open Checkout with further options:
     handler.open({
-      name        : $el.data('name'),
-      description : $el.data('description'),
-      currency    : $el.data('currency'),
-      amount      : $el.data('amount'),
-      panelLabel  : $el.data('panel-label'),
+      name            : $el.data('name'),
+      description     : $el.data('description'),
+      currency        : $el.data('currency'),
+      amount          : $el.data('amount'),
+      panelLabel      : $el.data('panel-label'),
+      allowRememberMe : $el.data('allow-remember-me'),
     });
 
   });
