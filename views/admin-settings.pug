@@ -19,13 +19,22 @@ block content
       .form-group.row
         label.col-3.col-form-label(for="input-#{name}") #{item.title} #{item.required ? ' (*)' : ''}
         .col-9(class=(errors[name] ? 'has-danger' : ''))
-          input.form-control(
-            id=('input-' + name)
-            name=name
-            type="text"
-            value=(form[name] || ( current[name] && current[name].value ) || '' )
-            placeholder=(item.default || item.title || '')
-          )
+          if item.type == 'text'
+            textarea.form-control(
+              id=('input-' + name)
+              name=name
+              rows= item.rows || 3
+              value=(form[name] || ( current[name] && current[name].value ) || '' )
+              placeholder=(item.default || item.title || '')
+            )
+          else
+            input.form-control(
+              id=('input-' + name)
+              name=name
+              type="text"
+              value=(form[name] || ( current[name] && current[name].value ) || '' )
+              placeholder=(item.default || item.title || '')
+            )
           if errors[name]
             .form-control-feedback= errors[name]
           p.form-text.text-muted(id=('help-' + name)) !{item.help}
