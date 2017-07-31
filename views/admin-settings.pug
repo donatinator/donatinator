@@ -2,6 +2,14 @@ extends layout-admin
 
 block content
 
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item.active
+      | Settings
+
   h1 Settings
 
   p These are settings specific to your organisation and donation website.

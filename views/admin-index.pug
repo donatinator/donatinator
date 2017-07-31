@@ -2,20 +2,31 @@ extends layout-admin
 
 block content
 
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item.active
+      | Admin
+
   h1 Admin
 
   p.
     This admin section allows you to control various aspects of your donation portal.
     Click on any of the following sections to modify your site.
 
-  p
-    a.btn.btn-secondary(href="/admin/pages") Edit Page Content (ToDo)
-    |  
-    a.btn.btn-secondary(href="/admin/settings") Change Settings
-    |  
-    a.btn.btn-secondary(href="/admin/donations") View Donations (ToDo)
+  h2 Content and Donations
 
-  h3 About
+  p
+    a.btn.btn-secondary(href="/admin/donations") View Donations
+    | 
+    button.btn.btn-secondary(href="/admin/pages", disabled) View and Edit Pages (ToDo)
+
+  h2 Settings
+
+  p
+    a.btn.btn-secondary(href="/admin/settings") Change Settings
+
+  h2 About
 
   p.
     The <a href="https://donatinator.org/">Donatinator</a> is a small, simple, and secure way to accept online
