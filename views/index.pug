@@ -37,7 +37,7 @@ block content
           data-description="$10 Donation"
           data-amount="1000"
           data-panel-label="Donate {{amount}} Now"
-          data-currency="nzd"
+          data-currency= settings.currency
         ) Donate $10.00 Now
 
       div(style="padding-bottom: 30px;")
@@ -51,7 +51,7 @@ block content
           data-description="$10 Donation"
           data-amount="2500"
           data-panel-label="Donate {{amount}} Now"
-          data-currency="nzd"
+          data-currency= settings.currency
         ) Donate $25.00 Now
 
       div(style="padding-bottom: 30px;")
@@ -65,14 +65,15 @@ block content
           data-description="$10 Donation"
           data-amount="10000"
           data-panel-label="Donate {{amount}} Now"
-          data-currency="nzd"
+          data-currency= settings.currency
         ) Donate $100.00 Now
 
       form#js-form-single(action="/donate", method="post")
-        input(type="hidden", name="email")
-        input(type="hidden", name="token")
-        input(type="hidden", name="tokenType")
+        input(type="hidden", name="token_id")
+        input(type="hidden", name="type")
         input(type="hidden", name="amount")
+        input(type="hidden", name="email")
+        input(type="hidden", name="client_ip")
 
 block scripts
   script(src="https://checkout.stripe.com/checkout.js")

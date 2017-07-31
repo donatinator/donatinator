@@ -3,8 +3,6 @@
 // simple, and reliable. Hope that is okay with you. (Oh, and we're using jQuery - deal with it!) :)
 
 $(function() {
-  console.log('Ready');
-
   // enable the buttons now that everything has loaded
   $('.js-single').prop('disabled', false);
 
@@ -14,32 +12,19 @@ $(function() {
     locale  : 'auto',
     zipCode : true,
     token   : function(token) {
-      // You can access the token ID with `token.id`.
-      // Get the token ID to your server-side code for use.
-      console.log('token:', token)
-
-      // get hold of the hidden "Single Donation" form on the page and submit it
+      // get hold of the hidden "Single Donation" form on the page
       var $form = $('#js-form-single');
-      console.log('$form:', $form)
-
-      console.log('$form.email:', $form.find("input[name='email']"))
-      console.log('$form.token:', $form.find("input[name='token']"))
-      console.log('$form.tokenType:', $form.find("input[name='tokenType']"))
 
       // then, find all the hidden inputs we want to send (if not there, then we can't populate it)
+      $form.find("input[name='token_id']").first().val(token.id)
+      $form.find("input[name='type']").first().val(token.type)
       $form.find("input[name='email']").first().val(token.email)
-      $form.find("input[name='token']").first().val(token.id)
-      $form.find("input[name='tokenType']").first().val(token.type)
+      $form.find("input[name='client_ip']").first().val(token.client_ip)
 
       // finally, submit the form which will post to `/donate` and we can go from there on the server
-      setTimeout(function() {
-        console.log($form);
-        $form.submit();
-      }, 1000);
+      $form.submit();
     }
   })
-
-  console.log($('.js-single'));
 
   // Listen to clicks on the donate buttons so we can do a custom integration.
   //
@@ -54,9 +39,7 @@ $(function() {
       $el.prop('disabled', false);
     }, 3000);
 
-    console.log('clicked');
-
-    // set the amount in the form
+    // set the amount in the form - since the token doesn't give this back to us later
     var $form = $('#js-form-single');
     $form.find("input[name='amount']").first().val($el.data('amount'))
 
@@ -64,6 +47,7 @@ $(function() {
     handler.open({
       name        : $el.data('name'),
       description : $el.data('description'),
+      currency    : $el.data('currency'),
       amount      : $el.data('amount'),
       panelLabel  : $el.data('panel-label'),
     });
