@@ -1,7 +1,37 @@
-extends layout
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="description", content=settings.lead)
+    meta(name="author", content="")
 
-block menu
-  ul.nav.nav-pills.float-right
-    li.nav-item
-      a.nav-link(href="/sign-out") Sign Out
-  span.navbar-text.float-right= user.username
+    title= settings.title || title
+
+    link(rel="shortcut icon", href="/favicon.ico")
+    link(rel="icon", href="/favicon.ico")
+
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/s/css/styles.css")
+  body
+    .container.container-admin
+      .header.clearfix
+        nav
+          block menu
+            ul.nav.nav-pills.float-right
+              li.nav-item
+                a.nav-link(href="/sign-out") Sign Out
+            span.navbar-text.float-right= user.username
+        h3.text-muted= settings.title || title
+
+      block content
+
+      footer.footer
+        p
+          | Powered by The 
+          a(href="https://donatinator.org", target="_blank") Donatinator
+          | . Free software for anyone to use and help raise funds for themselves.
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="/s/js/ie10.js")
+    block scripts

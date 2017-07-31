@@ -19,16 +19,24 @@ block content
   table.table.table-striped
     thead
       tr
+        td Test/Live
         td Email
         td Currency
         td Amount
         td Status
         td When
+        td Stripe Link
     tbody
       for donation in donations
-        tr
+        tr(style=`color: ${donation.livemode?"black":"gray"}`)
+          td= donation.livemode ? "Live" : "Test"
           td= donation.email
           td= donation.currency
-          td= donation.amount
+          td(style="text-align: right;")= donation.amount
           td= donation.status
           td= donation.inserted.toISOString()
+          td
+            a.btn(
+              class=`${donation.livemode?"btn-primary":"btn-secondary"}`
+              href=`https://dashboard.stripe.com/${ donation.livemode ? '' : 'test/' }payments/${ donation.charge_id }`,target="_blank"
+            ) View Charge
