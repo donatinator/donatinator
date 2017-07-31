@@ -2,16 +2,25 @@
 
 "use strict"
 
+// Read our secrets from `process.env` right here, prior to loading up anything from core, npm, or locally and then
+// scrub them from `process.env`.
+//
+// Why?
+//
+// If we don't, then any file deep within the `node_modules` folder can look for things like
+// `process.env.STRIPE_PRIVATE_KEY` and `process.env.STRIPE_PUBLIC_KEY` and perhaps do nefarious things with them.
+const env       = require('./lib/env.js')
+
 // core
-const http = require('http')
-const path = require('path')
+const http      = require('http')
+const path      = require('path')
 
 // npm
 const pg        = require('pg')
 const pgpatcher = require('pg-patcher')
 
 // local
-const app = require('./lib/app.js')
+const app       = require('./lib/app.js')
 
 // --------------------------------------------------------------------------------------------------------------------
 // setup
@@ -22,11 +31,11 @@ console.log('Starting Donatinator ...')
 const databasePatchLevel = 4
 
 // check some env vars are set
-if ( !process.env.STRIPE_PUBLIC_KEY ) {
+if ( !env.stripePublicKey ) {
   throw new Error("Required: environment variable STRIPE_PUBLIC_KEY (your publishable key) must be set")
 }
 
-if ( !process.env.DATABASE_URL ) {
+if ( !env.databaseUrl ) {
   throw new Error("Required: environment variable DATABASE_URL must be provided")
 }
 
@@ -45,7 +54,7 @@ console.log('Env Vars look okay')
 
 // just get a client, no need for a pool here
 const client = new pg.Client({
-  connectionString : process.env.DATABASE_URL,
+  connectionString : env.databaseUrl,
 })
 client.connect()
 
@@ -68,7 +77,7 @@ pgpatcher(client, databasePatchLevel, opts, (err) => {
   const server = http.createServer()
   server.on('request', app)
 
-  const port = process.env.PORT || '3000'
+  const port = env.PORT || '3000'
   server.listen(port, () => {
     console.log('Listening on port %s', port)
   })
