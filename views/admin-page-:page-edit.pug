@@ -1,0 +1,23 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item
+      a(href="/admin/pages") Pages
+    li.breadcrumb-item
+      a(href=`/admin/page/${page.name}`)= page.title
+    li.breadcrumb-item.active
+      | Edit
+
+  h1 Page
+
+  p= page.name
+  p= page.title
+  pre: code= page.markdown
+  pre: code= page.html
+
