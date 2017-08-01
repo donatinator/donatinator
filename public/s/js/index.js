@@ -7,7 +7,6 @@ $(function() {
   $('.js-single').prop('disabled', false);
 
   var handler = StripeCheckout.configure({
-    key     : 'pk_test_ZjNAyuQFJ3P1ZN23TCX1xBBn',
     image   : 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale  : 'auto',
     zipCode : true,
@@ -51,6 +50,7 @@ $(function() {
       amount          : $el.data('amount'),
       panelLabel      : $el.data('panel-label'),
       allowRememberMe : $el.data('allow-remember-me'),
+      key             : $el.data('key'),
     });
 
   });
