@@ -77,7 +77,7 @@ pgpatcher(client, databasePatchLevel, opts, (err) => {
   const server = http.createServer()
   server.on('request', app)
 
-  const port = env.PORT || '3000'
+  const port = env.port || '3000'
   server.listen(port, () => {
     console.log('Listening on port %s', port)
   })
