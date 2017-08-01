@@ -1,0 +1,44 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item.active
+      | Pages
+
+  h1 Pages
+
+  p
+    | All pages you add here can be seen at the top-level of the site. For example, if you add a
+    |  page called <code>about</code> it can be viewed at <code>/about</code>.
+  p
+    | There are two special pages. If you add a page called <code>index</code>, the content will
+    |  be seen on the front page underneath the donation table. The <code>thanks</code> page
+    |  appears after the user has donated successfully. Neither can be deleted.
+
+  p
+    a.btn.btn-primary(href="/page/new") Create Page
+
+  table.table.table-striped
+    thead
+      tr
+        th(style="text-align: center;", width="30%") Name
+        th(style="text-align: center;", width="40%") Title
+        th(style="text-align: center;", width="10%") Position
+        th(style="text-align: center;", width="20%") Actions
+    tbody
+      for page in pages
+        tr
+          td #{page.name} (
+            a(href=`/${page.name == 'index' ? '' : page.name}`,target="_blank") open
+            | )
+          td= page.title
+          td(style="text-align: center;")= page.position || 'n/a'
+          td(style="text-align: center;")
+            a.btn.btn-primary(href=`/admin/page/${page.name}/edit`) Edit
+            |  
+            a.btn.btn-primary(href=`/admin/page/${page.name}/remove`) Delete
