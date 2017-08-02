@@ -90,3 +90,9 @@ label.col-form-label {
     text-align: right;
     font-weight: bold;
 }
+
+/* images - from : https://v4-alpha.getbootstrap.com/content/images/ */
+img {
+    max-width: 100%;
+    height: auto;
+}

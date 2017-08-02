@@ -81,6 +81,12 @@ block content
         input(type="hidden", name="email")
         input(type="hidden", name="client_ip")
 
+  if page
+    .row
+      .col-lg-12
+        h2= page.title
+        div!= page.html
+
 block scripts
   script(src="https://checkout.stripe.com/checkout.js")
   script(src="/s/js/index.js")

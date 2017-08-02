@@ -14,10 +14,48 @@ block content
     li.breadcrumb-item.active
       | Edit
 
-  h1 Page
+  h1 Edit Page
 
-  p= page.name
-  p= page.title
-  pre: code= page.markdown
-  pre: code= page.html
-
+  form(action=`/admin/page/${page.name}/edit`, method="post")
+    .form-group.row
+      label.col-3.col-form-label(for="input-name") Name
+      .col-9(class=errors.name ? 'has-danger' : '')
+        input.form-control(
+          id="input-name"
+          name="name"
+          type="text"
+          value=form.name || page.name || ''
+          placeholder="e.g. about"
+        )
+        if errors.name
+          .form-control-feedback= errors.name
+        p.form-text.text-muted(id="help-name") Names must be lowercase letters and numbers. Can also contain dashes and underscores.
+    .form-group.row
+      label.col-3.col-form-label(for="input-title") Title
+      .col-9(class=errors.title ? 'has-danger' : '')
+        input.form-control(
+          id="input-title"
+          name="title"
+          type="text"
+          value=form.title || page.title || ''
+          placeholder="e.g. About"
+        )
+        if errors.title
+          .form-control-feedback= errors.title
+        p.form-text.text-muted(id="help-title") The title to show at the top of the page and in the <code>title</code> tag in the page structure.
+    .form-group.row
+      label.col-3.col-form-label(for="input-content") Content
+      .col-9(class=errors.content ? 'has-danger' : '')
+        textarea.form-control(
+          id="input-content"
+          name="content"
+          rows=10
+          placeholder="Enter your content here ..."
+        )= form.content || page.content || ''
+        if errors.content
+          .form-control-feedback= errors.content
+        p.form-text.text-muted(id="help-content") This content is in Markdown format. See here for more details.
+    .form-group.row
+      .offset-sm-3.col-sm-9
+        button.btn.btn-primary(type="submit") Save
+        a.btn.btn-default(href="/admin/pages") Cancel
