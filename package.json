@@ -1,7 +1,7 @@
 {
   "name": "donatinator",
   "version": "0.1.0",
-  "description": "A small, simple, secure way to accept Single or Monthly donations for your charities and non-profits.",
+  "description": "A small, simple, secure way to accept Single or Recurring Donations for your charities and non-profits.",
   "private": true,
   "scripts": {
     "start": "node server.js"

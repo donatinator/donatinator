@@ -1,7 +1,7 @@
 -- ----------------------------------------------------------------------------
 
--- table: single_charge
-CREATE TABLE single_charge (
+-- table: donation
+CREATE TABLE donation (
     id              INTEGER NOT NULL DEFAULT nextval('object_id_seq'::TEXT) PRIMARY KEY,
 
     -- fields from the `token`
@@ -23,7 +23,7 @@ CREATE TABLE single_charge (
 
     LIKE base       INCLUDING DEFAULTS
 );
-CREATE TRIGGER single_charge_update BEFORE UPDATE ON single_charge
+CREATE TRIGGER donation_update BEFORE UPDATE ON donation
     FOR EACH ROW EXECUTE PROCEDURE updated();
 
 -- ----------------------------------------------------------------------------
