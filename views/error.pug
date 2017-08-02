@@ -1,3 +1,16 @@
-h1= message
-h2= error.status
-pre #{error.stack}
+extends layout-main
+
+block content
+  h2 Sorry
+  p There was an error processing your donation.
+  .alert.alert-danger= message
+  p
+    | Please
+    |
+    <a href="/">click here and try again</a>
+    | .
+
+  if error.status
+    h3= error.status
+  if error.stack
+    pre #{error.stack}
