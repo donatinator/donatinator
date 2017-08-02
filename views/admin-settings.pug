@@ -17,7 +17,7 @@ block content
   form(action="/admin/settings", method="post")
     for item, name in cfg
       .form-group.row
-        label.col-3.col-form-label(for="input-#{name}") #{item.title} #{item.required ? ' (*)' : ''}
+        label.col-3.col-form-label(for=`input-${name}`) #{item.title} #{item.required ? ' (*)' : ''}
         .col-9(class=(errors[name] ? 'has-danger' : ''))
           if item.type == 'text'
             textarea.form-control(
