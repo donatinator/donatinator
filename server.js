@@ -28,7 +28,7 @@ const app       = require('./lib/app.js')
 console.log('Starting Donatinator ...')
 
 // database
-const databasePatchLevel = 5
+const databasePatchLevel = 6
 
 // check some env vars are set
 if ( !env.stripePublicKey ) {
