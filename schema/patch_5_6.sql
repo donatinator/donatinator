@@ -25,19 +25,21 @@ VALUES
     ('year', true, 5)
 ;
 
--- table: pledge
+-- table: plan
 -- Note: if 'interval' is 'none', then it means this is for single donations.
-CREATE TABLE pledge (
+CREATE TABLE plan (
     id              INTEGER NOT NULL DEFAULT nextval('object_id_seq'::TEXT) PRIMARY KEY,
     interval_id     INTEGER NOT NULL REFERENCES interval,
-    title           TEXT NOT NULL, -- e.g. 'Rata', 'Piwakawaka', 'Hillary'.
+    name            TEXT UNIQUE NOT NULL, -- e.g. 'rata', 'piwakawaka', 'bronze', 'hillary', 'lomu'.
+    title           TEXT NOT NULL, -- e.g. 'Rata', 'Piwakawaka', 'Bronze', 'Hillary', 'Lomu'.
     description     TEXT NOT NULL DEFAULT '',
     amount          INTEGER NOT NULL, -- e.g. 1000 for $10, or 2500 for $25.
+    currency        TEXT NOT NULL, -- e.g. 'nzd', 'aud', 'usd', whatever `setting.currency` was when the plan was created
     active          BOOLEAN NOT NULL DEFAULT true,
 
     LIKE base       INCLUDING DEFAULTS
 );
-CREATE TRIGGER pledge_update BEFORE UPDATE ON pledge
+CREATE TRIGGER plan_update BEFORE UPDATE ON plan
     FOR EACH ROW EXECUTE PROCEDURE updated();
 
 -- ----------------------------------------------------------------------------

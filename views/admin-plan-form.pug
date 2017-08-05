@@ -1,0 +1,110 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item
+      a(href="/admin/plans") Plans
+    if form.id
+      li.breadcrumb-item
+        a(href=`/admin/plan/${form.name}`)= form.title
+      li.breadcrumb-item.active
+        | Edit
+    else
+      li.breadcrumb-item.active
+        | New
+
+  if form.id
+    h1 Edit Plan
+  else
+    h1 New Plan
+
+  form(action=`/admin/plan/${ form.name ? form.name + '/edit' : 'new' }`, method="post")
+
+    .form-group.row
+      label.col-3.col-form-label(for="input-name") Name
+      .col-9(class=errors.name ? 'has-danger' : '')
+        input.form-control(
+          id="input-name"
+          name="name"
+          type="text"
+          disabled=!!form.id
+          value=form.name || ''
+          placeholder="e.g. piwakaka-1000"
+        )
+        if errors.name
+          .form-control-feedback= errors.name
+        if form.id
+          p.form-text.text-muted(id="help-name").
+            The name of a plan can't be changed after it has been created. If it is incorrect, please delete and
+            re-create under a different name.
+        else
+          p.form-text.text-muted(id="help-name") Names must be lowercase letters or numbers. They can include hyphens.
+
+    .form-group.row
+      label.col-3.col-form-label(for="input-title") Title
+      .col-9(class=errors.title ? 'has-danger' : '')
+        input.form-control(
+          id="input-title"
+          name="title"
+          type="text"
+          value=form.title || ''
+          placeholder="e.g. About"
+        )
+        if errors.title
+          .form-control-feedback= errors.title
+        p.form-text.text-muted(id="help-title") The title to show in the plan list on the homepage.
+
+    .form-group.row
+      label.col-3.col-form-label(for="input-description") Description
+      .col-9(class=(errors.description ? 'has-danger' : ''))
+        textarea.form-control(
+          id='input-description'
+          name="description"
+          rows="5"
+          placeholder="Your donation will help us ..."
+        )= form.description || ''
+        if errors.description
+          .form-control-feedback= errors.description
+        p.form-text.text-muted(id="help-description") Will be shown next to the donation plans on the homepage.
+
+    .form-group.row
+      label.col-3.col-form-label(for="input-amount") Amount
+      .col-9(class=errors.amount ? 'has-danger' : '')
+        input.form-control(
+          id="input-amount"
+          name="amount"
+          type="text"
+          value=form.amount || ''
+          disabled=!!form.id
+          placeholder="1000"
+        )
+        if errors.amount
+          .form-control-feedback= errors.amount
+        if form.id
+          p.form-text.text-muted(id="help-amount") The currency for this plan is <code>#{form.currency}</code>.
+        else
+          p.form-text.text-muted(id="help-amount") The amount for this plan in your current <code>currency</code> setting.
+
+    .form-group.row
+      label.col-3.col-form-label(for="input-interval") Interval
+      .col-9(class=errors.interval ? 'has-danger' : '')
+        for interval in intervals
+          label
+            input(type="radio", name="interval", value=interval.name, checked=form.interval == interval.name, disabled=!!form.id)
+            |
+            |
+            span(style="padding-right: 20px;")=interval.name
+            br
+        if errors.interval
+          .form-control-feedback= errors.interval
+        p.form-text.text-muted(id="help-interval") For single donations, choose 'none'. For recurring donations (subscriptions) choose any other value.
+
+    .form-group.row
+      .offset-sm-3.col-sm-9
+        button.btn.btn-primary(type="submit") Save
+        a.btn.btn-default(href="/admin/plans") Cancel

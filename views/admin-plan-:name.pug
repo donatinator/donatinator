@@ -1,0 +1,35 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item
+      a(href="/admin/plans") Plans
+    li.breadcrumb-item.active= plan.title
+
+  h1= plan.title
+
+  ul
+    li name = #{plan.name}
+    li title = #{plan.title}
+    li description = #{plan.description}
+    li amount = #{plan.amount}
+    li currency = #{plan.currency}
+    li interval = #{plan.interval_id}
+
+  h2 Subscribers
+
+  p ToDo: a list of subscribers
+
+  h2 Danger Zone
+
+  p.
+    Warning: if you deactivate a plan you cannot get it back. Also, be aware that whilst you won't see this plan in
+    this admin section any longer, you may still have subscribers attached to this plan in Stripe and their
+    subscriptions will still be processed each month.
+
+  a.btn.btn-danger(href=`/admin/plan/${plan.name}/deactivate`) Deactivate Plan

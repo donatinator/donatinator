@@ -1,0 +1,55 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item.active
+      | Plans
+
+  h1 Plans
+
+  p
+    a.btn.btn-primary(href="/admin/plan/new") Create Plan
+
+  table.table.table-striped
+    thead
+      tr
+        th(style="text-align: center;", width="10%") Name
+        th(style="text-align: center;", width="20%") Title
+        th(style="text-align: center;", width="30%") Description
+        th(style="text-align: center;", width="10%") Amount
+        th(style="text-align: center;", width="10%") Interval
+        th(style="text-align: center;", width="20%") Actions
+    tbody
+      for plan in plans
+        tr
+          td
+           a(href=`/admin/plan/${plan.name}`)= plan.name
+          td= plan.title
+          td= plan.description
+          td(style="text-align: right;")= plan.amount
+          td= plan.interval
+          td(style="text-align: center;")
+            a.btn.btn-primary(href=`/admin/plan/${plan.name}/edt`) Edit
+
+  h2 Quick Help
+
+  p.
+
+    Here are all of your plans. This list includes single donation plans as well as all recurring plans. It also
+    contains all active and inactive plans too, even though the inactive ones are not shown on the website.
+
+  p.
+
+    Please note two things about these plans. The first is that you are unable to edit the 'name', 'currency' and
+    'amount' fields since you may have people subscribed to the plan currently (you wouldn't want their regular
+    donation changed). Also, if you delete a plan, it is only marked as inactive in the database (not deleted) for the
+    same reason. To edit the name, currency, or amount of a subscription you must delete it first and then recreate it.
+
+  p.
+
+    Whilst these conditions do not apply to single donation plans, the same process applies to keep things consistent.
