@@ -28,7 +28,7 @@ block content
       for plan in plans
         tr
           td
-           a(href=`/admin/plan/${plan.name}`)= plan.name
+            a(href=`/admin/plan/${plan.name}`)= plan.name
           td= plan.title
           td= plan.description
           td(style="text-align: right;")= plan.amount
