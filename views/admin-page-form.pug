@@ -9,14 +9,22 @@ block content
       a(href="/admin/") Admin
     li.breadcrumb-item
       a(href="/admin/pages") Pages
-    li.breadcrumb-item
-      a(href=`/admin/page/${page.name}`)= page.title
-    li.breadcrumb-item.active
-      | Edit
+    if form.id
+      li.breadcrumb-item
+        a(href=`/admin/page/${form.name}`)= form.title
+      li.breadcrumb-item.active
+        | Edit
+    else
+      li.breadcrumb-item.active
+        | New
 
-  h1 Edit Page
+  if form.id
+    h1 Edit Page
+  else
+    h1 New Page
 
-  form(action=`/admin/page/${page.name}/edit`, method="post")
+  form(action=`/admin/page/${ form.name ? form.name + '/edit' : 'new' }`, method="post")
+
     .form-group.row
       label.col-3.col-form-label(for="input-name") Name
       .col-9(class=errors.name ? 'has-danger' : '')
@@ -24,12 +32,13 @@ block content
           id="input-name"
           name="name"
           type="text"
-          value=form.name || page.name || ''
+          value=form.name || ''
           placeholder="e.g. about"
         )
         if errors.name
           .form-control-feedback= errors.name
         p.form-text.text-muted(id="help-name") Names must be lowercase letters and numbers. Can also contain dashes and underscores.
+
     .form-group.row
       label.col-3.col-form-label(for="input-title") Title
       .col-9(class=errors.title ? 'has-danger' : '')
@@ -37,12 +46,13 @@ block content
           id="input-title"
           name="title"
           type="text"
-          value=form.title || page.title || ''
+          value=form.title || ''
           placeholder="e.g. About"
         )
         if errors.title
           .form-control-feedback= errors.title
         p.form-text.text-muted(id="help-title") The title to show at the top of the page and in the <code>title</code> tag in the page structure.
+
     .form-group.row
       label.col-3.col-form-label(for="input-content") Content
       .col-9(class=errors.content ? 'has-danger' : '')
@@ -51,10 +61,11 @@ block content
           name="content"
           rows=10
           placeholder="Enter your content here ..."
-        )= form.content || page.content || ''
+        )= form.content || ''
         if errors.content
           .form-control-feedback= errors.content
         p.form-text.text-muted(id="help-content") This content is in Markdown format. See here for more details.
+
     .form-group.row
       .offset-sm-3.col-sm-9
         button.btn.btn-primary(type="submit") Save

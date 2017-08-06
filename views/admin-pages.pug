@@ -21,7 +21,7 @@ block content
     |  appears after the user has donated successfully. Neither can be deleted.
 
   p
-    a.btn.btn-primary(href="/page/new") Create Page
+    a.btn.btn-primary(href="/admin/page/new") Create Page
 
   table.table.table-striped
     thead
@@ -33,7 +33,10 @@ block content
     tbody
       for page in pages
         tr
-          td #{page.name} (
+          td
+            a(href=`/admin/page/${page.name}`)= page.name
+            |
+            | (
             a(href=`/${page.name == 'index' ? '' : page.name}`,target="_blank") open
             | )
           td= page.title
@@ -41,4 +44,4 @@ block content
           td(style="text-align: center;")
             a.btn.btn-primary(href=`/admin/page/${page.name}/edit`) Edit
             |  
-            a.btn.btn-primary(href=`/admin/page/${page.name}/del`) Delete
+            a.btn.btn-primary(href=`/admin/page/${page.name}/delete`) Delete
