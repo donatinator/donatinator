@@ -9,21 +9,21 @@ block content
       a(href="/admin/") Admin
     li.breadcrumb-item
       a(href="/admin/pages") Pages
-    if form.id
+    if page.id
       li.breadcrumb-item
-        a(href=`/admin/page/${form.name}`)= form.title
+        a(href=`/admin/page/${page.name}`)= page.title
       li.breadcrumb-item.active
         | Edit
     else
       li.breadcrumb-item.active
         | New
 
-  if form.id
+  if page.id
     h1 Edit Page
   else
     h1 New Page
 
-  form(action=`/admin/page/${ form.name ? form.name + '/edit' : 'new' }`, method="post")
+  form(action=`/admin/page/${ page.id ? page.name + '/edit' : 'new' }`, method="post")
 
     .form-group.row
       label.col-3.col-form-label(for="input-name") Name
