@@ -23,6 +23,9 @@ block content
   else
     h1 New Page
 
+  if errors.msg
+    .alert.alert-danger= errors.msg
+
   form(action=`/admin/page/${ page.id ? page.name + '/edit' : 'new' }`, method="post")
 
     .form-group.row
