@@ -13,7 +13,7 @@ block content
   h1 Subscription Plans
 
   p
-    a.btn.btn-primary(href="/admin/gift/new") Create Gift
+    a.btn.btn-primary(href="/admin/plan/new") Create Plan
 
   p
     | Your overall subscription settings cannot be changed here but you should review them in your Stripe Account's
@@ -43,6 +43,9 @@ block content
             strong Statement Descriptor
             | : #{plan.statement_descriptor}
           td
+            strong Amount
+            | : #{plan.amount}
+            br
             strong Currency
             | : #{plan.currency}
             br

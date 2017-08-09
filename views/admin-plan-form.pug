@@ -103,10 +103,10 @@ block content
       .col-9(class=errors.interval ? 'has-danger' : '')
         for interval in intervals
           label
-            input(type="radio", name="interval", value=interval.name, checked=form.interval == interval.name, disabled=!!form.id)
+            input(type="radio", name="interval", value=interval, checked=form.interval == interval, disabled=!!form.id)
             |
             |
-            span(style="padding-right: 20px;")=interval.name
+            span(style="padding-right: 20px;")=interval
             br
         if errors.interval
           .form-control-feedback= errors.interval
