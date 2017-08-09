@@ -24,5 +24,6 @@
     "stripe": "^4.23.1",
     "validate.js": "^0.11.1",
     "zid": "^0.2.0"
-  }
+  },
+  "license": "AGPL-3.0"
 }

@@ -60,6 +60,6 @@ contributors to be able to get on board too.
 
 ## License ##
 
-MIT.
+AGPLv3.
 
 (Ends)
