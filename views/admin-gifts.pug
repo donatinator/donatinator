@@ -1,0 +1,50 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item.active
+      | Gifts
+
+  h1 Single Gift Plans
+
+  p
+    a.btn.btn-primary(href="/admin/gift/new") Create Gift
+
+  table.table.table-striped
+    thead
+      tr
+        th(style="text-align: center;", width="30%") Id / Name
+        th(style="text-align: center;", width="40%") Description
+        th(style="text-align: center;", width="10%") Amount
+        th(style="text-align: center;", width="20%") Actions
+    tbody
+      for gift in gifts
+        tr
+
+          td
+            strong Id
+            | : #{gift.id}
+            br
+            strong Name
+            | : #{gift.name}
+            br
+          td
+            strong Description
+            | : #{gift.description}
+            br
+            strong Statement Descriptor
+            | : #{gift.statement}
+          td(style="text-align: right;") #{gift.amount} (#{gift.currency})
+          td(style="text-align: center;")
+            a.btn.btn-primary(href=`/admin/plan/${gift.name}/edt`) Edit
+
+  h2 Quick Help
+
+  p.
+
+    Here are all of your one-off single gift plans.

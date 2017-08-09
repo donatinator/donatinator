@@ -9,17 +9,19 @@ block content
       a(href="/admin/") Admin
     li.breadcrumb-item
       a(href="/admin/plans") Plans
-    li.breadcrumb-item.active= plan.title
+    li.breadcrumb-item.active= plan.name
 
   h1= plan.title
 
   ul
-    li name = #{plan.name}
-    li title = #{plan.title}
-    li description = #{plan.description}
+    li name = #{plan.id}
+    li title = #{plan.name}
+    li description = #{plan.metadata.description}
     li amount = #{plan.amount}
     li currency = #{plan.currency}
     li interval = #{plan.interval_id}
+    li statement = #{gift.statement_descriptor}
+    li active = #{plan.metadata.active}
 
   h2 Subscribers
 

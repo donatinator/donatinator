@@ -10,38 +10,57 @@ block content
     li.breadcrumb-item.active
       | Plans
 
-  h1 Plans
+  h1 Subscription Plans
 
   p
-    a.btn.btn-primary(href="/admin/plan/new") Create Plan
+    a.btn.btn-primary(href="/admin/gift/new") Create Gift
+
+  p
+    | Your overall subscription settings cannot be changed here but you should review them in your Stripe Account's
+    |
+    a(href="https://dashboard.stripe.com/account/recurring",target="_blank") Recurring Settings
+    | . Check especially for the setting on what action to take for unpaid subscriptions.
 
   table.table.table-striped
     thead
       tr
-        th(style="text-align: center;", width="10%") Name
-        th(style="text-align: center;", width="20%") Title
-        th(style="text-align: center;", width="30%") Description
-        th(style="text-align: center;", width="10%") Amount
-        th(style="text-align: center;", width="10%") Interval
+        th(style="text-align: center;", width="60%") Details
+        th(style="text-align: center;", width="20%") Plan
         th(style="text-align: center;", width="20%") Actions
     tbody
       for plan in plans
         tr
           td
-            a(href=`/admin/plan/${plan.name}`)= plan.name
-          td= plan.title
-          td= plan.description
-          td(style="text-align: right;")= plan.amount
-          td= plan.interval
-          td(style="text-align: center;")
+            strong Id
+            | : #{plan.id}
+            br
+            strong Name
+            | : #{plan.name}
+            br
+            strong Description
+            | : #{plan.metadata.description}
+            br
+            strong Statement Descriptor
+            | : #{plan.statement_descriptor}
+          td
+            strong Currency
+            | : #{plan.currency}
+            br
+            strong Interval
+            | : #{plan.interval}
+            br
+            strong Active
+            | : #{plan.metadata.active}
+            br
+          td(style="text-align: right;")
             a.btn.btn-primary(href=`/admin/plan/${plan.name}/edt`) Edit
 
   h2 Quick Help
 
   p.
 
-    Here are all of your plans. This list includes single donation plans as well as all recurring plans. It also
-    contains all active and inactive plans too, even though the inactive ones are not shown on the website.
+    Here are all of your recurring subscription plans. It also contains all active and inactive plans too, even though
+    the inactive ones are not shown on the website.
 
   p.
 
@@ -49,7 +68,3 @@ block content
     'amount' fields since you may have people subscribed to the plan currently (you wouldn't want their regular
     donation changed). Also, if you delete a plan, it is only marked as inactive in the database (not deleted) for the
     same reason. To edit the name, currency, or amount of a subscription you must delete it first and then recreate it.
-
-  p.
-
-    Whilst these conditions do not apply to single donation plans, the same process applies to keep things consistent.

@@ -7,72 +7,27 @@ block content
     p.lead= settings.lead
 
   .row.marketing
-    .col-lg-6
-      h2 Monthly Donation
-      div(style="padding-bottom: 30px;")
-        strong $10.00
-        br
-        |  Ensures we can provide the right support throughout the year.
-
-      div(style="padding-bottom: 30px;")
-        strong $25.00
-        br
-        |  Enables us to invest in new projects.
-
-      div(style="padding-bottom: 30px;")
-        strong $100.00
-        br
-        |  Makes sure we can continue our work on an ongoing basis.
 
     .col-lg-6
       h2 Single Donation
-      div(style="padding-bottom: 30px;")
-        strong $10.00
-        br
-        |  Provides one person water for a year.
-        button.btn.btn-primary.js-single(
-          type="button"
-          disabled="true"
-          data-key=stripePublicKey
-          data-name="Fresh Water for All"
-          data-description="$10 Donation"
-          data-amount="1000"
-          data-panel-label="Donate {{amount}} Now"
-          data-currency=settings.currency
-          data-allow-remember-me="false"
-        ) Donate $10.00 Now
 
-      div(style="padding-bottom: 30px;")
-        strong $25.00
-        br
-        |  Buys tools and equipment to help maintain current infrastructure.
-        button.btn.btn-primary.js-single(
-          type="button"
-          disabled="true"
-          data-key=stripePublicKey
-          data-name="Fresh Water for All"
-          data-description="$10 Donation"
-          data-amount="2500"
-          data-panel-label="Donate {{amount}} Now"
-          data-currency=settings.currency
-          data-allow-remember-me="false"
-        ) Donate $25.00 Now
-
-      div(style="padding-bottom: 30px;")
-        strong $100.00
-        br
-        |  Provides one day's labour to help build new water supplies and sewerage.
-        button.btn.btn-primary.js-single(
-          type="button"
-          disabled="true"
-          data-key=stripePublicKey
-          data-name="Fresh Water for All"
-          data-description="$10 Donation"
-          data-amount="10000"
-          data-panel-label="Donate {{amount}} Now"
-          data-currency=settings.currency
-          data-allow-remember-me="false"
-        ) Donate $100.00 Now
+      for gift in gifts
+        .card(style="margin-top: 10px;")
+          .card-block
+            h4.card-title $#{gift.amount/100} - #{gift.name}
+            p.card-text= gift.description
+            p
+              button.btn.btn-primary.js-single(
+                type="button"
+                disabled="true"
+                data-key=stripePublicKey
+                data-name= settings.title
+                data-description=`$${gift.amount/100} Donation`
+                data-amount= gift.amount/100
+                data-panel-label="Donate {{amount}} Now"
+                data-currency=gift.currency
+                data-allow-remember-me="false"
+              ) Donate $#{gift.amount/100} Now
 
       form#js-form-single(action="/donate", method="post")
         input(type="hidden", name="token_id")
@@ -80,6 +35,27 @@ block content
         input(type="hidden", name="amount")
         input(type="hidden", name="email")
         input(type="hidden", name="client_ip")
+
+    .col-lg-6
+      h2 Monthly Donation
+
+      for plan in plans
+        .card(style="margin-top: 10px;")
+          .card-block
+            h4.card-title $#{plan.amount/100} - #{plan.name}
+            p.card-text= plan.metadata.description
+            p
+              button.btn.btn-primary.js-single(
+                type="button"
+                disabled="true"
+                data-key=stripePublicKey
+                data-name= settings.title
+                data-description=`$${plan.amount/100} Donation`
+                data-amount= plan.amount/100
+                data-panel-label="Donate {{amount}} Now"
+                data-currency=plan.currency
+                data-allow-remember-me="false"
+              ) Donate $#{plan.amount/100} Now
 
   if page
     .row

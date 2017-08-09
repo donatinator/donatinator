@@ -8,61 +8,61 @@ block content
     li.breadcrumb-item
       a(href="/admin/") Admin
     li.breadcrumb-item
-      a(href="/admin/plans") Plans
-    if plan.id
+      a(href="/admin/gifts") Gifts
+    if gift.id
       li.breadcrumb-item
-        a(href=`/admin/plan/${plan.id}`)= plan.name
+        a(href=`/admin/gift/${gift.id}`)= gift.name
       li.breadcrumb-item.active
         | Edit
     else
       li.breadcrumb-item.active
         | New
 
-  if plan.id
-    h1 Edit Plan
+  if gift.id
+    h1 Edit Gift
   else
-    h1 New Plan
+    h1 New Gift
 
   if errors.msg
     .alert.alert-danger= errors.msg
 
-  form(action=`/admin/plan/${ plan.id ? plan.id + '/edit' : 'new' }`, method="post")
+  form(action=`/admin/gift/${ gift.id ? gift.id + '/edit' : 'new' }`, method="post")
 
     .form-group.row
-      label.col-3.col-form-label(for="input-name") Name
+      label.col-3.col-form-label(for="input-id") Name
+      .col-9(class=errors.id ? 'has-danger' : '')
+        input.form-control(
+          id="input-id"
+          name="id"
+          type="text"
+          disabled=!!form.id
+          value=form.id || ''
+          placeholder="e.g. piwakaka-1000"
+        )
+        if errors.id
+          .form-control-feedback= errors.id
+        if form.id
+          p.form-text.text-muted(id="help-id")
+            | The name of a gift can't be changed after it has been created. If it is incorrect, please delete and
+            | re-create under a different name.
+        else
+          p.form-text.text-muted(id="help-id")
+            | Names must be lowercase letters or numbers. They can include hyphens.
+
+    .form-group.row
+      label.col-3.col-form-label(for="input-name") Title
       .col-9(class=errors.name ? 'has-danger' : '')
         input.form-control(
           id="input-name"
           name="name"
           type="text"
-          disabled=!!form.id
           value=form.name || ''
-          placeholder="e.g. piwakaka-1000"
+          placeholder="e.g. About"
         )
         if errors.name
           .form-control-feedback= errors.name
-        if form.id
-          p.form-text.text-muted(id="help-name")
-            | The name of a plan can't be changed after it has been created. If it is incorrect, please delete and
-            | re-create under a different name.
-        else
-          p.form-text.text-muted(id="help-name")
-            | Names must be lowercase letters or numbers. They can include hyphens.
-
-    .form-group.row
-      label.col-3.col-form-label(for="input-title") Title
-      .col-9(class=errors.title ? 'has-danger' : '')
-        input.form-control(
-          id="input-title"
-          name="title"
-          type="text"
-          value=form.title || ''
-          placeholder="e.g. About"
-        )
-        if errors.title
-          .form-control-feedback= errors.title
-        p.form-text.text-muted(id="help-title")
-          | The title to show in the plan list on the homepage.
+        p.form-text.text-muted(id="help-name")
+          | The title to show in the gift list on the homepage.
 
     .form-group.row
       label.col-3.col-form-label(for="input-description") Description
@@ -76,7 +76,7 @@ block content
         if errors.description
           .form-control-feedback= errors.description
         p.form-text.text-muted(id="help-description")
-          | Will be shown next to the donation plans on the homepage.
+          | Will be shown next to the donation gifts on the homepage.
 
     .form-group.row
       label.col-3.col-form-label(for="input-amount") Amount
@@ -93,25 +93,10 @@ block content
           .form-control-feedback= errors.amount
         if form.id
           p.form-text.text-muted(id="help-amount")
-            | The currency for this plan is <code>#{form.currency}</code>.
+            | The currency for this gift is <code>#{form.currency}</code>.
         else
           p.form-text.text-muted(id="help-amount")
-            | The amount for this plan in your current <code>currency</code> setting.
-
-    .form-group.row
-      label.col-3.col-form-label(for="input-interval") Interval
-      .col-9(class=errors.interval ? 'has-danger' : '')
-        for interval in intervals
-          label
-            input(type="radio", name="interval", value=interval.name, checked=form.interval == interval.name, disabled=!!form.id)
-            |
-            |
-            span(style="padding-right: 20px;")=interval.name
-            br
-        if errors.interval
-          .form-control-feedback= errors.interval
-        p.form-text.text-muted(id="help-interval")
-          | For single donations, choose 'none'. For recurring donations (subscriptions) choose any other value.
+            | The amount for this gift in your current <code>currency</code> setting.
 
     .form-group.row
       label.col-3.col-form-label(for="input-statement") Statement Descriptor
@@ -132,4 +117,4 @@ block content
     .form-group.row
       .offset-sm-3.col-sm-9
         button.btn.btn-primary(type="submit") Save
-        a.btn.btn-default(href="/admin/plans") Cancel
+        a.btn.btn-default(href="/admin/gifts") Cancel

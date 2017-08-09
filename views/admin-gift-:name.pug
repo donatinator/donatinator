@@ -1,0 +1,26 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item
+      a(href="/admin/gifts") Gifts
+    li.breadcrumb-item.active= gift.name
+
+  h1= gift.name
+
+  ul
+    li name = #{gift.id}
+    li title = #{gift.name}
+    li description = #{gift.description}
+    li amount = #{gift.amount}
+    li currency = #{gift.currency}
+    li statement = #{gift.statement}
+
+  h2 Donators
+
+  p ToDo: a list of donators
