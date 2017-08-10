@@ -6,6 +6,14 @@ block content
     h1.display-3= settings.title || title
     p.lead= settings.lead
 
+  form#js-form(action="/", method="post")
+    input(type="hidden", name="token_id")
+    input(type="hidden", name="type")
+    input(type="hidden", name="amount")
+    input(type="hidden", name="email")
+    input(type="hidden", name="client_ip")
+    input(type="hidden", name="plan")
+
   .row.marketing
 
     .col-lg-6
@@ -17,24 +25,19 @@ block content
             h4.card-title $#{gift.amount/100} - #{gift.name}
             p.card-text= gift.description
             p
-              button.btn.btn-primary.js-single(
+              button.btn.btn-primary.js-donate(
                 type="button"
                 disabled="true"
+                data-action="/donate"
                 data-key=stripePublicKey
                 data-name= settings.title
                 data-description=`$${gift.amount/100} Donation`
-                data-amount= gift.amount/100
+                data-amount= gift.amount
                 data-panel-label="Donate {{amount}} Now"
                 data-currency=gift.currency
                 data-allow-remember-me="false"
+                data-plan=""
               ) Donate $#{gift.amount/100} Now
-
-      form#js-form-single(action="/donate", method="post")
-        input(type="hidden", name="token_id")
-        input(type="hidden", name="type")
-        input(type="hidden", name="amount")
-        input(type="hidden", name="email")
-        input(type="hidden", name="client_ip")
 
     .col-lg-6
       h2 Monthly Donation
@@ -45,17 +48,19 @@ block content
             h4.card-title $#{plan.amount/100} - #{plan.name}
             p.card-text= plan.metadata.description
             p
-              button.btn.btn-primary.js-single(
+              button.btn.btn-primary.js-subscribe(
                 type="button"
                 disabled="true"
+                data-action="/subscribe"
                 data-key=stripePublicKey
                 data-name= settings.title
-                data-description=`$${plan.amount/100} Donation`
-                data-amount= plan.amount/100
-                data-panel-label="Donate {{amount}} Now"
+                data-description=`$${plan.amount/100} Subscription`
+                data-amount= plan.amount
+                data-panel-label="Donate {{amount}} Monthly"
                 data-currency=plan.currency
                 data-allow-remember-me="false"
-              ) Donate $#{plan.amount/100} Now
+                data-plan=plan.id
+              ) Donate $#{plan.amount/100} Monthly
 
   if page
     .row
