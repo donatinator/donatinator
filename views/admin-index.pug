@@ -16,22 +16,30 @@ block content
 
   h2 Donations and Subscriptions
 
+  p.
+
+    You can view your latest donations and subscriptions here. These lists are pulled directly from Stripe as needed.
+
   p
     a.btn.btn-primary(href="/admin/donations") View Donations
     | 
     a.btn.btn-primary(href="/admin/subscriptions") View Subscriptions
 
-  h2 Plans
+  h2 Gifts and Plans
 
   p.
-    Plans are the types of donations you want to accept, whether they are single donations or recurring ones. You may
-    set up daily, weekly, monthly, or yearly recurring donations. Each plan consists of an interval (or not), a
-    currency, and an amount.
+
+    There are two types of donation, a 'gift' (single donation) and a 'plan' (recurring subscription). Both of these
+    types are shown on the homepage. Each has a name, description, amount, and text to show on the user's credit card
+    statement. Only plans have an interval.
 
   p
-    a.btn.btn-primary(href="/admin/plans") Edit Plans (Single or Recurring)
+    a.btn.btn-primary(href="/admin/gifts") Edit Gift Options
+    |
+    |
+    a.btn.btn-primary(href="/admin/plans") Edit Subscription Plans
 
-  p Note: edit your settings to show or hide a particular plan (ToDo: Development).
+  p Note: the currency setting is used for all new gift options and plans.
 
   h2 Content
 
