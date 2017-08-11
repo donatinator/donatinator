@@ -3,6 +3,8 @@
 Deploy a small, simple, secure site to enable you to accept one-off or recurring donations for your non-profit or
 charity.
 
+In other words, a "Donation Service".
+
 The Donatinator is designed to be easy to use for both you and your donators.
 
 ## Design Decisions ##
