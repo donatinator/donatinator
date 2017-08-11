@@ -40,3 +40,58 @@ block content
               class=`${donation.livemode?"btn-primary":"btn-secondary"}`
               href=`https://dashboard.stripe.com/${ donation.livemode ? '' : 'test/' }payments/${ donation.charge_id }`,target="_blank"
             ) View Charge
+
+  h1 Donations
+
+  p
+
+    | We do not save information locally when somebody makes a donation.Instead we load this data from Stripe on
+    | request.
+
+  table.table.table-striped
+    thead
+      tr
+        td Live/Test
+        td Details
+        td Stripe Links
+        td Status
+        td(class="ta-c") Actions
+    tbody
+      for charge in charges
+        tr(style=`color: ${charge.livemode?"black":"gray"}`)
+          td= charge.livemode ? "Live" : "Test"
+          td
+            | #{charge.source.name}
+            br
+            | #{charge.currency.toUpperCase()} #{charge.amount/100}
+          td
+            strong Charge
+            |
+            | :
+            |
+            a(
+              href=`https://dashboard.stripe.com/${ charge.livemode ? '' : 'test/' }payments/${ charge.id }`,target="_blank"
+            ) #{charge.id}
+            br
+            strong Customer
+            |
+            | :
+            |
+            a(
+              href=`https://dashboard.stripe.com/${ charge.livemode ? '' : 'test/' }customers/${ charge.customer }`,target="_blank"
+            ) #{charge.customer}
+            br
+            strong Invoice
+            |
+            | :
+            |
+            a(
+              href=`https://dashboard.stripe.com/${ charge.livemode ? '' : 'test/' }invoice/${ charge.invoice }`,target="_blank"
+            ) #{charge.invoice}
+            ul
+              li Transaction (ToDo)
+              li Card (ToDo)
+          td= charge.status
+          td(class="ta-c")
+            a.btn.btn-danger(href=`/admin/donation/${charge.id}/refund`, data-toggle="tooltip", title="Refund")
+              span.fa.fa-arrow-left
