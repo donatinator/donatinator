@@ -1,0 +1,66 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item.active
+      | Subscriptions
+
+  h1 Subscriptions
+
+  p
+
+    | We do not save information locally when someone subscribes to a plan. Instead we load this data
+    | from Stripe on request.
+
+  p
+
+    | The subscriptions only have references to the Subscription Id and the Customer Id. If you want to unsubscribe a
+    | certain email address, you'll need to look in the
+    |
+    a(href="/admin/customers") customers
+    |
+    | first.
+
+  table.table.table-striped
+    thead
+      tr
+        td Live/Test
+        td Stripe Links
+        td Plan
+        td Status
+        td(class="ta-c") Actions
+    tbody
+      for subscription in subscriptions
+        tr(style=`color: ${subscription.livemode?"black":"gray"}`)
+          td= subscription.livemode ? "Live" : "Test"
+          td
+            strong Subscription
+            |
+            | :
+            |
+            a(
+              href=`https://dashboard.stripe.com/${ subscription.livemode ? '' : 'test/' }subscriptions/${ subscription.id }`,target="_blank"
+            ) #{subscription.id}
+            br
+            strong Customer
+            |
+            | :
+            |
+            a(
+              href=`https://dashboard.stripe.com/${ subscription.livemode ? '' : 'test/' }customers/${ subscription.customer }`,target="_blank"
+            ) #{subscription.customer}
+            ul
+              li Plan (ToDo)
+              li Invoices (ToDo)
+              li Logs (ToDo)
+              li Events (ToDo)
+          td #{subscription.plan.name} - #{subscription.plan.currency.toUpperCase()} #{subscription.plan.amount/100}
+          td= subscription.status
+          td(class="ta-c")
+            a.btn.btn-danger(href=`/admin/subscription/${subscription.id}/del`, data-toggle="tooltip", title="Cancel Subscription")
+              span.fa.fa-remove

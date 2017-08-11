@@ -96,3 +96,7 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.ta-l { text-align: left;   }
+.ta-c { text-align: center; }
+.ta-r { text-align: right;  }
