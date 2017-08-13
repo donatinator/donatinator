@@ -72,7 +72,7 @@ block content
           name="description"
           rows="5"
           placeholder="Your donation will help us ..."
-        )= form.description || ''
+        )= form.description || plan.metadata.description || ''
         if errors.description
           .form-control-feedback= errors.description
         p.form-text.text-muted(id="help-description")
@@ -103,7 +103,7 @@ block content
       .col-9(class=errors.interval ? 'has-danger' : '')
         for interval in intervals
           label
-            input(type="radio", name="interval", value=interval, checked=form.interval == interval, disabled=!!form.id)
+            input(type="radio", name="interval", value=interval, checked=(form.interval || plan.interval) == interval, disabled=!!form.id)
             |
             |
             span(style="padding-right: 20px;")=interval
@@ -120,7 +120,7 @@ block content
           id="input-statement"
           name="statement"
           type="text"
-          value=form.statement || ''
+          value=form.statement || plan.statement_descriptor || ''
           placeholder="e.g. FRESH WATER BRONZE"
         )
         if errors.statement
