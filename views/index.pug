@@ -35,9 +35,10 @@ block content
                 data-amount= gift.amount
                 data-panel-label="Donate {{amount}} Now"
                 data-currency=gift.currency
-                data-allow-remember-me="false"
                 data-image=settings.stripeImage || null
-                data-plan=""
+                data-allow-remember-me=settings.stripeAllowRememberMe === 'true' ? "true" : "false"
+                data-zip-code=settings.stripeZipCode ? 'true' : 'false'
+                data-billing-address=settings.stripeBillingAddress === 'true' ? "true" : "false"
               ) Donate $#{gift.amount/100} Now
 
     .col-lg-6
@@ -59,8 +60,10 @@ block content
                 data-amount= plan.amount
                 data-panel-label="Donate {{amount}} Monthly"
                 data-currency=plan.currency
-                data-allow-remember-me="false"
                 data-image=settings.stripeImage || null
+                data-allow-remember-me=settings.stripeAllowRememberMe === 'true' ? "true" : "false"
+                data-zip-code=settings.stripeZipCode ? 'true' : 'false'
+                data-billing-address=settings.stripeBillingAddress === 'true' ? "true" : "false"
                 data-plan=plan.id
               ) Donate $#{plan.amount/100} Monthly
 

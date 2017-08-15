@@ -9,10 +9,12 @@ $(function() {
   var $form = $('#js-form');
 
   var handler = StripeCheckout.configure({
-    image   : 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale  : 'auto',
-    zipCode : true,
-    token   : function(token) {
+    token   : function(token, args) {
+      // console.log('token()')
+      // console.log('token:', token)
+      // console.log('args:', args)
+
       // then, find all the hidden inputs we want to send (if not there, then we can't populate it)
       $form.find("input[name='token_id']").first().val(token.id)
       $form.find("input[name='type']").first().val(token.type)
@@ -48,6 +50,8 @@ $(function() {
       allowRememberMe : $el.data('allow-remember-me'),
       key             : $el.data('key'),
       image           : $el.data('image'),
+      zipCode         : $el.data('zip-code'),
+      billingAddress  : $el.data('billing-address'),
     });
   }
 
