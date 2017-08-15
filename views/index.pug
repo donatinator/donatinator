@@ -36,6 +36,7 @@ block content
                 data-panel-label="Donate {{amount}} Now"
                 data-currency=gift.currency
                 data-allow-remember-me="false"
+                data-image=settings.stripeImage || null
                 data-plan=""
               ) Donate $#{gift.amount/100} Now
 
@@ -59,6 +60,7 @@ block content
                 data-panel-label="Donate {{amount}} Monthly"
                 data-currency=plan.currency
                 data-allow-remember-me="false"
+                data-image=settings.stripeImage || null
                 data-plan=plan.id
               ) Donate $#{plan.amount/100} Monthly
 

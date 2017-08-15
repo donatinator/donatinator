@@ -47,6 +47,7 @@ $(function() {
       panelLabel      : $el.data('panel-label'),
       allowRememberMe : $el.data('allow-remember-me'),
       key             : $el.data('key'),
+      image           : $el.data('image'),
     });
   }
 
