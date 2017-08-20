@@ -1,0 +1,23 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item
+      a(href="/admin/reports") Reports
+    li.breadcrumb-item.active
+      | Customers
+
+  h1 Customers
+
+  p.
+    Note: Whilst Stripe calls these people 'customers', you'd be more likely to refer to them as 'subscribers',
+    'monthly donors', or 'patreons'. We use the same terminology as Stripe so it is less confusing.
+
+  ul
+    for customer in customers
+      li (#{customer.id}) #{customer.email || '[Unknown]'} (#{customer.livemode ? 'live' : 'test'})
