@@ -21,3 +21,10 @@ block content
   ul
     for customer in customers
       li (#{customer.id}) #{customer.email || '[Unknown]'} (#{customer.livemode ? 'live' : 'test'})
+
+  p
+    | You can also get a
+    |
+    a(href=`https://dashboard.stripe.com/customers`) Customer Report
+    |
+    | in your Stripe dashboard. Click 'Export' near the top right of the page.
