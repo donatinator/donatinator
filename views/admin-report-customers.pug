@@ -15,12 +15,49 @@ block content
   h1 Customers
 
   p.
+
     Note: Whilst Stripe calls these people 'customers', you'd be more likely to refer to them as 'subscribers',
     'monthly donors', or 'patreons'. We use the same terminology as Stripe so it is less confusing.
 
-  ul
-    for customer in customers
-      li (#{customer.id}) #{customer.email || '[Unknown]'} (#{customer.livemode ? 'live' : 'test'})
+  p.
+
+    If a customer here has no plan shown, then at some point we managed to create the customer in Stripe but creating
+    the subscription must have failed or not gone through somehow.
+
+  table.table.table-striped
+    thead
+      tr
+        th ID / Email
+        th Plan
+        th Actions
+    tbody
+      for customer in customers
+        tr
+          td
+            strong ID
+            | : #{customer.id}
+            br
+            strong Email
+            | : #{customer.email || '[Unknown]'}
+            br
+          td
+            for subscription in customer.subscriptions.data
+              strong Id
+              | : #{subscription.plan.id}
+              br
+              strong Name
+              | : #{subscription.plan.name}
+              br
+              <strong>Plan</strong>
+              | : #{subscription.plan.id}
+              br
+              <strong>Amount</strong>
+              | : #{subscription.plan.amount/100}
+              br
+              <strong>Currency</strong>
+              | : #{subscription.plan.currency}
+              br
+          td n/a
 
   p
     | You can also get a
