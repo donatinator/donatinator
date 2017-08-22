@@ -13,28 +13,36 @@ block content
       a(href=`/admin/gift/${gift.id}`)= gift.name
     li.breadcrumb-item.active Delete
 
-  h1= gift.name
-
-  ul
-    li name = #{gift.id}
-    li title = #{gift.name}
-    li description = #{gift.description}
-    li amount = #{gift.amount}
-    li currency = #{gift.currency}
-    li statement = #{gift.statement}
+  h1 Delete Gift Option?
 
   form(method="post")
 
     .form-group.row
-      label.col-3.col-form-label Confirmation Required
-      .col-9
-        input.form-control(
-          type="text"
-          readonly
-          value="Are you sure you wish to delete this gift option?"
-        )
+      label.col-3.col-form-label Id
+      .col-9.col-form-label= gift.id
 
     .form-group.row
-      .offset-sm-3.col-sm-9
-        button.btn.btn-primary(type="submit") Confirm
+      label.col-3.col-form-label Name
+      .col-9.col-form-label= gift.name
+
+    .form-group.row
+      label.col-3.col-form-label Description
+      .col-9.col-form-label= gift.description
+
+    .form-group.row
+      label.col-3.col-form-label Amount
+      .col-9.col-form-label= gift.amount
+
+    .form-group.row
+      label.col-3.col-form-label Currency
+      .col-9.col-form-label= gift.currency
+
+    .form-group.row
+      label.col-3.col-form-label Statement Descriptor
+      .col-9.col-form-label= gift.statement
+
+    .form-group.row
+      label.col-3.col-form-label Confirm
+      .col-9
+        button.btn.btn-primary(type="submit") Delete
         a.btn.btn-default(href="/admin/gifts") Cancel
