@@ -10,10 +10,12 @@ block content
     li.breadcrumb-item.active
       | Gifts
 
-  h1 Single/One-Off Gifts
+  h1 Single / One-Off Gifts
 
   p
-    a.btn.btn-primary(href="/admin/gift/new") Create Gift
+    a.btn.btn-primary(href="/admin/gift/new")
+      span.fa.fa-plus
+      |  Create Gift
 
   table.table.table-striped
     thead
@@ -41,7 +43,13 @@ block content
             | : #{gift.statement}
           td(style="text-align: right;") #{gift.amount} (#{gift.currency})
           td(style="text-align: center;")
-            a.btn.btn-primary(href=`/admin/gift/${gift.id}/edit`) Edit
+            a.btn.btn-primary(href=`/admin/gift/${gift.id}/edit`)
+              span.fa.fa-pencil
+            |
+            |
+            a.btn.btn-primary(href=`/admin/gift/${gift.id}/delete`)
+              span.fa.fa-remove
+
 
   h2 Quick Help
 
