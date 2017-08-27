@@ -48,7 +48,7 @@ const app       = require('./lib/app.js')
 console.log('Starting Donatinator ...')
 
 // database
-const databasePatchLevel = 6
+const databasePatchLevel = 7
 
 // check some env vars are set
 if ( !env.stripePublicKey ) {
@@ -57,6 +57,10 @@ if ( !env.stripePublicKey ) {
 
 if ( !env.stripeSecretKey ) {
   throw new Error("Required: environment variable STRIPE_SECRET_KEY (your private key) must be set")
+}
+
+if ( !env.stripeEndpointSecret ) {
+  throw new Error("Required: environment variable STRIPE_ENDPOINT_SECRET must be set")
 }
 
 if ( !env.databaseUrl ) {
