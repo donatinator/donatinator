@@ -1,0 +1,31 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item.active
+      | Events
+
+  h1 Events
+
+  table.table.table-striped
+    thead
+      tr
+        th(style="text-align: center;", width="80%") Event
+        th(style="text-align: center;", width="20%") Actions
+    tbody
+      for event in events
+        tr
+          td
+            <strong>Id</strong>: #{event.id}
+            br
+            <strong>Inserted</strong>: #{event.inserted.toISOString()}
+            br
+            <strong>Event</strong>:
+            br
+            pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+          td n/a
