@@ -50,25 +50,6 @@ console.log('Starting Donatinator ...')
 // database
 const databasePatchLevel = 7
 
-// check some env vars are set
-if ( !env.stripePublicKey ) {
-  throw new Error("Required: environment variable STRIPE_PUBLIC_KEY (your publishable key) must be set")
-}
-
-if ( !env.stripeSecretKey ) {
-  throw new Error("Required: environment variable STRIPE_SECRET_KEY (your private key) must be set")
-}
-
-if ( !env.stripeEndpointSecret ) {
-  throw new Error("Required: environment variable STRIPE_ENDPOINT_SECRET must be set")
-}
-
-if ( !env.databaseUrl ) {
-  throw new Error("Required: environment variable DATABASE_URL must be provided")
-}
-
-console.log('Env Vars look okay')
-
 // --------------------------------------------------------------------------------------------------------------------
 // main
 

@@ -1,0 +1,41 @@
+extends layout-main
+
+block content
+
+  h1 Thanks for using The Donatinator
+
+  p.
+
+    It looks like you have just installed The Donatinator. Thanks! We appreciate you taking the time to try it out.
+
+  p.
+
+    Your next step is to configure your server so it can talk to Stripe properly (to process charges, and receive
+    webhooks).
+
+  h2 Environment Variables
+
+  p You will need to provide the following environment variables:
+
+  ul
+    li
+      code STRIPE_SECRET_KEY
+      |  - required so that the backend server can talk to Stripe privately
+    li
+      code STRIPE_PUBLIC_KEY
+      |  - required so that the frontend website can talk to Stripe
+    li
+      code STRIPE_ENDPOINT_SECRET
+      |  - required so that Stripe can send us events that happen outside of a direct interaction
+    li
+      code DATABASE_URL
+      |  - required so we can store non-essential data locally (not within Stripe itself)
+
+  p
+    | If you need help with setting up any of this, please review our documentation on
+    |
+    |
+    a(href="https://donatinator.org/config/environment/") setting up your environment
+    | .
+
+  p (Ends)
