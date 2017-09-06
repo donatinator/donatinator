@@ -50,6 +50,10 @@ block content
             td
               <strong>Id</strong>: #{event.id}
               br
+              <strong>Type</strong>: #{event.payload.type}
+              br
+              <strong>LiveMode</strong>: #{event.payload.livemode}
+              br
               <strong>Inserted</strong>: #{event.inserted.toISOString()}
               br
               <strong>Event</strong>:
