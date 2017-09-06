@@ -22,17 +22,17 @@ html(lang="en")
             ul.nav.nav-pills.float-right
               li.nav-item
                 a.nav-link(class=(toptab==="index"?"active":""), href="/") Home
-              li.nav-item
-                a.nav-link(class=(toptab==="about"?"active":""), href="/about") About
-              li.nav-item
-                a.nav-link(class=(toptab==="contact"?"active":""), href="/contact") Contact
+              for item in menu
+                li.nav-item
+                  a.nav-link(class=(toptab===item.name?"active":""), href=`/${item.name}`)= item.title
         h3.text-muted= settings.title || title
 
       block content
 
       footer.footer
         p
-          | Powered by The 
+          | Powered by The
+          |
           a(href="https://donatinator.org", target="_blank") Donatinator
           | . Free software for anyone to use and help raise funds for themselves.
 
