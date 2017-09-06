@@ -1,0 +1,19 @@
+mixin StripeLinkCustomer(cus)
+  a(
+    href=`https://dashboard.stripe.com/${ cus.livemode ? '' : 'test/' }customers/${ cus.id }`
+    target="_blank"
+  )
+    if block
+      block
+    else
+      | View Customer in Stripe
+
+mixin StripeLinkCharge(ch)
+  a(
+    href=`https://dashboard.stripe.com/${ ch.livemode ? '' : 'test/' }payments/${ ch.id }`
+    target="_blank"
+  )
+    if block
+      block
+    else
+      | View Charge in Stripe

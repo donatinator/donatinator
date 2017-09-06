@@ -26,6 +26,7 @@ html(lang="en")
             span.navbar-text.float-right= user.username
         h3.text-muted= settings.title || title
 
+      include mixins.pug
       block content
 
       footer.footer

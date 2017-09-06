@@ -19,13 +19,40 @@ block content
         th(style="text-align: center;", width="20%") Actions
     tbody
       for event in events
-        tr
-          td
-            <strong>Id</strong>: #{event.id}
-            br
-            <strong>Inserted</strong>: #{event.inserted.toISOString()}
-            br
-            <strong>Event</strong>:
-            br
-            pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
-          td n/a
+        tr(style=`color: ${ event.payload.livemode ? "black" : "gray" }`)
+          if event.payload.type === "customer.created"
+            td
+              h4 Customer Created
+              ul
+                li
+                  strong Subscriptions
+                  | : #{event.payload.data.object.subscriptions.data.length}
+              // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+            td
+              +StripeLinkCustomer(event.payload.data.object)
+          else if event.payload.type === "charge.captured"
+            td
+              h4 Charge Captured
+              ul
+                li
+                  strong Receipt Email
+                  | : #{event.payload.data.object.receipt_email}
+                li
+                  strong Amount
+                  | : #{event.payload.data.object.amount}
+                li
+                  strong Currency
+                  | : #{event.payload.data.object.currency}
+              // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+            td
+              +StripeLinkCharge(event.payload.data.object)
+          else
+            td
+              <strong>Id</strong>: #{event.id}
+              br
+              <strong>Inserted</strong>: #{event.inserted.toISOString()}
+              br
+              <strong>Event</strong>:
+              br
+              pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+            td n/a

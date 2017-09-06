@@ -22,7 +22,7 @@ INSERT INTO account(username, title, password) VALUES('stripe', 'Stripe', '');
 CREATE TABLE event (
     id              TEXT NOT NULL PRIMARY KEY, -- either the `req.id` from us, or the event id from Stripe ('evt_00000000000000')
     account_id      INTEGER NOT NULL REFERENCES account,
-    data            JSON NOT NULL,
+    payload         JSON NOT NULL,
 
     LIKE base       INCLUDING DEFAULTS
 );
