@@ -5,7 +5,7 @@ charity.
 
 In other words, a "Donation Service".
 
-The Donatinator is designed to be easy to use for both you and your donators.
+The Donatinator is designed to be easy to use for both you and your donors.
 
 ## Design Decisions ##
 
@@ -59,6 +59,7 @@ contributors to be able to get on board too.
 * [Andrew Chilton](https://chilts.org)
 * [Twitter](https://twitter.com/andychilton)
 * [GitHub](https://github.com/chilts)
+* [GitLab](https://gitlab.com/chilts)
 
 ## License ##
 
