@@ -45,6 +45,7 @@ block content
                 li: +Field("Receipt Email", event.payload.data.object.receipt_email)
                 li: +Field("Amount",        event.payload.data.object.amount)
                 li: +Field("Currency",      event.payload.data.object.currency)
+                li: +Field("Outcome",       JSON.stringify(event.payload.data.object.outcome))
               // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
             td
               +StripeLinkCharge(event.payload.data.object)
