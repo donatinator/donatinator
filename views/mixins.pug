@@ -17,3 +17,7 @@ mixin StripeLinkCharge(ch)
       block
     else
       | View Charge in Stripe
+
+mixin Field(key, val)
+  strong= key
+  | : #{val}

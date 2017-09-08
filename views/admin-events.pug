@@ -24,9 +24,7 @@ block content
             td
               h4 Customer Created
               ul
-                li
-                  strong Subscriptions
-                  | : #{event.payload.data.object.subscriptions.data.length}
+                li: +Field("Subscriptions", event.payload.data.object.subscriptions.data.length)
               // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
             td
               +StripeLinkCustomer(event.payload.data.object)
@@ -34,20 +32,29 @@ block content
             td
               h4 Charge Captured
               ul
-                li
-                  strong Receipt Email
-                  | : #{event.payload.data.object.receipt_email}
-                li
-                  strong Amount
-                  | : #{event.payload.data.object.amount}
-                li
-                  strong Currency
-                  | : #{event.payload.data.object.currency}
+                li: +Field("Receipt Email", event.payload.data.object.receipt_email)
+                li: +Field("Amount",        event.payload.data.object.amount)
+                li: +Field("Currency",      event.payload.data.object.currency)
+              // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+            td
+              +StripeLinkCharge(event.payload.data.object)
+          else if event.payload.type === "charge.succeeded"
+            td
+              h4 Charge Succeeded
+              ul
+                li: +Field("Receipt Email", event.payload.data.object.receipt_email)
+                li: +Field("Amount",        event.payload.data.object.amount)
+                li: +Field("Currency",      event.payload.data.object.currency)
               // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
             td
               +StripeLinkCharge(event.payload.data.object)
           else
             td
+              ul
+                li: +Field("Id", event.id)
+                li: +Field("Type", event.payload.type)
+                li: +Field("LiveMode", event.payload.livemode)
+                li: +Field("Inserted", event.inserted.toISOString())
               <strong>Id</strong>: #{event.id}
               br
               <strong>Type</strong>: #{event.payload.type}
