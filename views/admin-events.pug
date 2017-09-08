@@ -25,7 +25,7 @@ block content
               h4 Customer Created
               ul
                 li: +Field("Subscriptions", event.payload.data.object.subscriptions.data.length)
-              // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+              p: +AdminEventRawLink(event)
             td
               +StripeLinkCustomer(event.payload.data.object)
           else if event.payload.type === "charge.captured"
@@ -35,7 +35,7 @@ block content
                 li: +Field("Receipt Email", event.payload.data.object.receipt_email)
                 li: +Field("Amount",        event.payload.data.object.amount)
                 li: +Field("Currency",      event.payload.data.object.currency)
-              // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+              p: +AdminEventRawLink(event)
             td
               +StripeLinkCharge(event.payload.data.object)
           else if event.payload.type === "charge.succeeded"
@@ -46,25 +46,16 @@ block content
                 li: +Field("Amount",        event.payload.data.object.amount)
                 li: +Field("Currency",      event.payload.data.object.currency)
                 li: +Field("Outcome",       JSON.stringify(event.payload.data.object.outcome))
-              // pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+              p: +AdminEventRawLink(event)
             td
               +StripeLinkCharge(event.payload.data.object)
           else
             td
+              h4= event.payload.type
               ul
                 li: +Field("Id", event.id)
                 li: +Field("Type", event.payload.type)
                 li: +Field("LiveMode", event.payload.livemode)
                 li: +Field("Inserted", event.inserted.toISOString())
-              <strong>Id</strong>: #{event.id}
-              br
-              <strong>Type</strong>: #{event.payload.type}
-              br
-              <strong>LiveMode</strong>: #{event.payload.livemode}
-              br
-              <strong>Inserted</strong>: #{event.inserted.toISOString()}
-              br
-              <strong>Event</strong>:
-              br
-              pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
+              p: +AdminEventRawLink(event)
             td n/a

@@ -21,3 +21,6 @@ mixin StripeLinkCharge(ch)
 mixin Field(key, val)
   strong= key
   | : #{val}
+
+mixin AdminEventRawLink(event)
+  a(href=`/admin/event/${ event.id }`) View Raw Event (JSON)

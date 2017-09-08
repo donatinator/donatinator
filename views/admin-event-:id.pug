@@ -1,0 +1,16 @@
+extends layout-admin
+
+block content
+
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href="/") Home
+    li.breadcrumb-item
+      a(href="/admin/") Admin
+    li.breadcrumb-item
+      a(href="/admin/events") Events
+    li.breadcrumb-item.active= event.id
+
+  h1  #{event.payload.type}
+
+  pre(style="border: 1px solid #333;")= JSON.stringify(event, ' ', 2)
