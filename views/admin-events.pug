@@ -25,6 +25,7 @@ block content
               h4 Customer Created
               ul
                 li: +Field("Subscriptions", event.payload.data.object.subscriptions.data.length)
+                li: +FieldTimestamp("Inserted", event.inserted)
               p: +AdminEventRawLink(event)
             td
               +StripeLinkCustomer(event.payload.data.object)
@@ -35,6 +36,7 @@ block content
                 li: +Field("Receipt Email", event.payload.data.object.receipt_email)
                 li: +Field("Amount",        event.payload.data.object.amount)
                 li: +Field("Currency",      event.payload.data.object.currency)
+                li: +FieldTimestamp("Inserted", event.inserted)
               p: +AdminEventRawLink(event)
             td
               +StripeLinkCharge(event.payload.data.object)
@@ -46,6 +48,7 @@ block content
                 li: +Field("Amount",        event.payload.data.object.amount)
                 li: +Field("Currency",      event.payload.data.object.currency)
                 li: +Field("Outcome",       JSON.stringify(event.payload.data.object.outcome))
+                li: +FieldTimestamp("Inserted", event.inserted)
               p: +AdminEventRawLink(event)
             td
               +StripeLinkCharge(event.payload.data.object)
@@ -56,6 +59,6 @@ block content
                 li: +Field("Id", event.id)
                 li: +Field("Type", event.payload.type)
                 li: +Field("LiveMode", event.payload.livemode)
-                li: +Field("Inserted", event.inserted.toISOString())
+                li: +FieldTimestamp("Inserted", event.inserted)
               p: +AdminEventRawLink(event)
             td n/a

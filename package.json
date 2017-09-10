@@ -4,7 +4,8 @@
   "description": "A small, simple, secure way to accept Single or Recurring Donations for your charities and non-profits.",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "ngrok": "ngrok http 3000"
   },
   "dependencies": {
     "async": "^2.5.0",
@@ -20,6 +21,7 @@
     "morgan": "^1.8.2",
     "pg": "^7.0.2",
     "pg-patcher": "^0.4.0",
+    "pgtrans": "^0.3.0",
     "pug": "^2.0.0-rc.2",
     "serve-favicon": "^2.4.3",
     "stripe": "^4.23.1",

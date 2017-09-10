@@ -48,7 +48,7 @@ const app       = require('./lib/app.js')
 console.log('Starting Donatinator ...')
 
 // database
-const databasePatchLevel = 7
+const databasePatchLevel = 8
 
 // --------------------------------------------------------------------------------------------------------------------
 // main

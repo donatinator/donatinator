@@ -22,5 +22,8 @@ mixin Field(key, val)
   strong= key
   | : #{val}
 
+mixin FieldTimestamp(key, val)
+  +Field(key, val.toISOString())
+
 mixin AdminEventRawLink(event)
   a(href=`/admin/event/${ event.id }`) View Raw Event (JSON)
