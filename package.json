@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
+    "psql": "psql -U donatinator donatinator",
     "ngrok": "ngrok http 3000"
   },
   "dependencies": {

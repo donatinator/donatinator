@@ -3,7 +3,8 @@
 -- table: account
 CREATE TABLE account (
     id              INTEGER NOT NULL DEFAULT nextval('object_id_seq'::TEXT) PRIMARY KEY,
-    username        TEXT NOT NULL UNIQUE,
+    email           TEXT NOT NULL UNIQUE,
+    stripe_cus      TEXT UNIQUE,
     title           TEXT NOT NULL,
     password        TEXT NOT NULL,
 
@@ -13,10 +14,10 @@ CREATE TRIGGER account_update BEFORE UPDATE ON account
     FOR EACH ROW EXECUTE PROCEDURE updated();
 
 -- insert an 'Admin' user that no-one can log in as, only used for USERNAME/PASSWORD env vars
-INSERT INTO account(username, title, password) VALUES('admin', 'Admin', '');
+INSERT INTO account(email, title, password) VALUES('admin', 'Admin', '');
 
 -- insert a 'Stripe' user that no-one can log in as
-INSERT INTO account(username, title, password) VALUES('stripe', 'Stripe', '');
+INSERT INTO account(email, title, password) VALUES('stripe', 'Stripe', '');
 
 -- table: event
 CREATE TABLE event (
