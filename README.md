@@ -1,3 +1,11 @@
+# MOVED TO GITLAB #
+
+Please see the following project for more details:
+
+* https://gitlab.com/donatinator/donatinator
+
+Thanks.
+
 # The Donatinator #
 
 Deploy a small, simple, secure site to enable you to accept one-off or recurring donations for your non-profit or
